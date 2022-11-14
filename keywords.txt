@@ -1,0 +1,2 @@
+CPUTemperature	KEYWORD1
+getCPUTemp	KEYWORD2
