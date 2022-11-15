@@ -17,20 +17,24 @@
 	
 	Возможности:
 	- получение температуры процессора
-	- настройка параметра смещения температуры
+	- настройка параметра смещения (компансации, offset) температуры
+	- настройка параметра прироста (gain) температуры
 	
 	MIT License
 	
 	Версии:
 	v1.0 - релиз
+	v1.1 - добавлен параметр настройки усиления (прироста) gain температуры
+	для более точной настройки (без объявления установлен по умолчанию - 1.22)
 */
 
 #pragma once
 #include <Arduino.h>
 class CPUTemperature {
 public:
-	CPUTemperature(double tempSizing = 324.31) { // 324.31 - параметр по умолчанию
-		_tempSizing = tempSizing;
+	CPUTemperature(double tempOffset = 324.31, double tempGain = 1.22) { // 324.31, 1.22 - параметры по умолчанию
+		_tempOffset = tempOffset;
+		_tempGain = tempGain;
 	}
 
 	double getCPUTemp(void) {
@@ -56,9 +60,10 @@ public:
 		wADC = ADCW;
 
 		// Температура в градусах Цельсия
-		return (wADC - _tempSizing ) / 1.22;
+		return (wADC - _tempOffset ) / _tempGain;
 	}
 
 private:
-	double _tempSizing;
+	double _tempOffset;
+	double _tempGain;
 };
