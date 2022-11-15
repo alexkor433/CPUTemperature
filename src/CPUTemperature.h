@@ -1,6 +1,6 @@
 /*
 	Библиотека для получения температуры процессора микроконтроллеров AVR
-	GitHub: https://github.com/alexkor433/CPUTemp.git
+	GitHub: https://github.com/alexkor433/CPUTemperature
 	
 	Совместимость:
 	ATmega8 : No
